@@ -9,18 +9,13 @@ $(document).ready(function() {
 
     $('form').on('submit', function(e){
         e.preventDefault();
-        const enderecoDaNovaImagem = $('#endereco-imagem-nova').val();
-        const novoItem = $('<li style="display: none"></li>');
-        $(`<img src="${enderecoDaNovaImagem}" />`).appendTo(novoItem);
-        $(`
-        <div class="overlay-imagem-link">
-            <a href="${enderecoDaNovaImagem}" target="_blank" title="Ver imagem em tamanho real">
-                Ver Imagem em Tamanho real
-            </a>
-        </div>
-        `).appendTo(novoItem);
-        $(novoItem).appendTo('ul');
-        $(novoItem).fadeIn(1000);
-        $('#endereco-imagem-nova').val('')
+        const nomeDaNovaAtividade = $('#campo-nome-atividade').val(); //Recuperando o valor do campo com o nome da atividade que preenchi
+        $(`<li class="line-list" > ${nomeDaNovaAtividade} </li>`).appendTo(".list");
+        $('#campo-nome-atividade').val('');
     })
-})
+    $(document).on("click", ".line-list", function () {
+        if ($(this).css("text-decoration").includes("line-through")) {
+            $(this).css("text-decoration", "none");
+          } else $(this).css("text-decoration", "line-through");
+      });
+});
